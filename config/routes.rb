@@ -1,6 +1,8 @@
 PsReporting::Application.routes.draw do
   resources :customers do
-    resources :sows
+    resources :sows do
+      resources :tasks
+    end
   end
 
   get "home/index"

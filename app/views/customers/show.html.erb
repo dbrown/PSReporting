@@ -4,9 +4,20 @@
   <b>Name:</b>
   <%= @customer.name %>
 </p>
-
 <h2>SOWs</h2>
-<%= render @customer.sows %>
+<table border="1">
+  <% @customer.sows.each do |sow| %>
+  <tr>
+    <td><%= sow.id %></td>
+    <td><%= link_to sow.category, customer_sow_path(sow.customer, sow) %></td>
+    <td><%= sow.price %></td>
+    <td><%= link_to 'Edit', [sow.customer, sow], :method => :edit%></td>
+    <td><%= link_to 'Delete', [sow.customer, sow],
+               :confirm => 'Are you sure?',
+               :method => :delete %></td>
+  </tr>
+  <% end %>
+</table>
 
 <h2>Add an sow:</h2>
 <%= render "sows/form" %>

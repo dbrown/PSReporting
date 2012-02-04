@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+<h2>SOW</h2>
+<table border="1">
+  <tr>
+    <td><%= @sow.id %></td>
+    <td><%= @sow.price %></td>
+  </tr>
+</table>
+
+<h2>Add a task:</h2>
+<%= form_for([@sow, @sow.tasks.build]) do |f| %>
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_field :description %>
+  </div>
+  <div class="field">
+    <%= f.label :duration %><br />
+    <%= f.text_field :duration %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+ 
+<%= link_to 'Edit SOW', edit_sow_path(@sow) %> |
+<%= link_to 'Back to Customers', customers_path %> |
