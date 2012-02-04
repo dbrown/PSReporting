@@ -1,0 +1,16 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @customer.name %>
+</p>
+
+<h2>SOWs</h2>
+<%= render @customer.sows %>
+
+<h2>Add an sow:</h2>
+<%= render "sows/form" %>
+<br/>
+
+<%= link_to 'Edit', edit_customer_path(@customer) %> |
+<%= link_to 'Back', customers_path %>

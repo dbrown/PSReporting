@@ -1,0 +1,5 @@
+<table border="1">
+  <% @customer.sows.each do |sow| %>
+  <tr><td><%= sow.category %></td><td><%= sow.price %></td></tr>
+  <% end %>
+</table>
