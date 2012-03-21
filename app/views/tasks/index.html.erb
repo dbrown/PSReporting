@@ -1,0 +1,16 @@
+<h1>Listing tasks</h1>
+
+<table>
+  <tr>
+    <th>Description</th>
+    <th>Duration</th>
+  </tr>
+
+<% @customers.each do |customer| %>
+  <tr>
+    <td><%= task.description %></td>
+    <td><%= task.duration %></td>
+  </tr>
+<% end %>
+</table>
+

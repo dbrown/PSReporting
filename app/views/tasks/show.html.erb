@@ -6,24 +6,16 @@
 </p>
 <h2>SOWs</h2>
 <table border="1">
-  <th>Type</th>
-  <th>Price</th>
-  <th>Link</th>
-  <th>Docs Accepted</th>
-  <th>Revenue Recognized</th>
-  <th colspan="3">Actions</th>
   <% @customer.sows.each do |sow| %>
   <tr>
     <td><%= sow.category %></td>
-    <td><%= number_to_currency(sow.price, :unit => "$") %></td>
+    <td><%= link_to 'Add Tasks', customer_sow_path(sow.customer, sow) %></td>
+    <td><%= sow.price %></td>
     <td><a target="_blank" href="<%= sow.link %>">Link to SOW in Dropbox</td>
-    <td><%= sow.docsaccepted %></td>
-    <td><%= sow.revrecd %></td>
-    <td><%= link_to 'Edit', [sow.customer, sow] %></td>
+    <td><%= link_to 'Edit', [sow.customer, sow], :method => :edit%></td>
     <td><%= link_to 'Delete', [sow.customer, sow],
                :confirm => 'Are you sure?',
                :method => :delete %></td>
-    <td><%= link_to 'Tasks', customer_sow_path(sow.customer, sow) %></td>
   </tr>
   <% end %>
 </table>

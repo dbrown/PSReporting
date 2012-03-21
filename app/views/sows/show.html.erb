@@ -1,28 +1,59 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-<h2>SOW</h2>
+<h2>SOW for <%= @sow.customer.name %></h2>
 <table border="1">
+  <th>Category</th>
+  <th>Price</th>
   <tr>
-    <td><%= @sow.id %></td>
+    <td><%= @sow.category %></td>
     <td><%= @sow.price %></td>
   </tr>
 </table>
 
+<h2>Tasks</h2>
+<table border="1">
+  <th>Description</th>
+  <th>Duration</th>
+  <th>Architect</th>
+  <th>Complete</th>
+  <% @sow.tasks.each do |task| %>
+  <tr>
+    <td><%= task.description %></td>
+    <td><%= task.duration %></td>
+    <td><%= task.architect.try(:name) %></td>
+    <td><%= task.complete %></td>
+    <td><%= link_to "Edit", edit_customer_sow_task_path(task.sow.customer, task.sow, task) %></td>
+    <td><%= link_to 'Delete', [task.sow.customer, task.sow, task],
+               :confirm => 'Are you sure?',
+               :method => :delete %></td>
+  </tr>
+  <% end %>
+</table>
+
 <h2>Add a task:</h2>
-<%= form_for([@sow, @sow.tasks.build]) do |f| %>
+<%= form_for([@sow.customer, @sow, @sow.tasks.build]) do |f| %>
   <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_field :description %>
+    <%= f.label :description%><br />
+    <%= f.text_field :description%>
   </div>
   <div class="field">
     <%= f.label :duration %><br />
     <%= f.text_field :duration %>
   </div>
+  <div class="field">
+    <%= f.label :architect %><br />
+    <%= f.select :architect_id, Architect.all.collect {|a| [a.name, a.id] }, { :include_blank => true }  %>
+  </div>
+  <div class="field">
+    <%= f.label :startdate %><br />
+    <%= f.date_select(:startdate, :start_year => 2012)  %>
+  </div>
+  <div class="field">
+    <%= f.label :enddate %><br />
+    <%= f.date_select(:enddate)  %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
- 
-<%= link_to 'Edit SOW', edit_sow_path(@sow) %> |
-<%= link_to 'Back to Customers', customers_path %> |

@@ -1,0 +1,33 @@
+<h1>Editing Task </h1>
+
+<%= form_for([@task.sow.customer, @task.sow, @task]) do |f| %>
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_field :description %>
+  </div>
+  <div class="field">
+    <%= f.label :duration %><br />
+    <%= f.text_field :duration %>
+  </div>
+  <div class="field">
+    <%= f.label :architect %><br />
+    <%= f.select :architect_id, Architect.all.collect {|a| [a.name, a.id] }, { :include_blank => true }  %>
+  </div>
+  <div class="field">
+    <%= f.label :complete %>
+    <%= f.check_box :complete %>
+  </div>
+  <div class="field">
+    <%= f.label :startdate %><br />
+    <%= f.date_select :startdate %>
+  </div>
+  <div class="field">
+    <%= f.label :enddate %><br />
+    <%= f.date_select :enddate %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+<%= link_to 'Back', customer_sow_task_path %>

@@ -1,4 +1,6 @@
 PsReporting::Application.routes.draw do
+  resources :architects
+
   resources :customers do
     resources :sows do
       resources :tasks
@@ -13,6 +15,8 @@ PsReporting::Application.routes.draw do
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action
+
+  match 'reports/engagements' => 'reports#engagements'
 
   # Sample of named route:
   #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase

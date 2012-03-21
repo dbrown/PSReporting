@@ -1,0 +1,28 @@
+<h1>Engagements Summary</h1>
+
+<table border="1">
+  <th>ID</th>
+  <th>Architect(s)</th>
+  <th>Customer</th>
+  <th>Engagement Type</th>
+  <th>Percent Complete</th>
+  <th>Dollars Worked</th>
+  <th>Total Price</th>
+<% @sows.each do |sow| %>
+  <tr>
+    <td><%= sow.id %></td>
+    <td><%= sow.tasks.collect(&:architect).flatten.collect(&:name).uniq.join(", ") %></td>
+    <td><%= sow.customer.name %></td>
+    <td><%= sow.category %></td>
+    <td><%= sow.percent_complete %></td>
+    <td><%= number_to_currency(sow.dollars_worked,:unit => "$") %></td>
+    <td><%= number_to_currency(sow.price,:unit => "$") %></td>
+  </tr>
+<% end %>
+  <tr>
+    <td><h3>Totals:</h3></td>
+    <td colspan="4">
+    <td><%= number_to_currency(@total_dollars_worked,:unit => "$") %></td>
+    <td><%= number_to_currency(@total_dollars,:unit => "$") %></td>
+  </tr>
+</table>

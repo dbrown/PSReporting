@@ -1,6 +1,6 @@
 <h1>Listing customers</h1>
 
-<table>
+<table border="1">
   <tr>
     <th>Name</th>
     <th></th>
@@ -11,9 +11,9 @@
 <% @customers.each do |customer| %>
   <tr>
     <td><%= customer.name %></td>
-    <td><%= link_to 'Show', customer %></td>
-    <td><%= link_to 'Edit', edit_customer_path(customer) %></td>
-    <td><%= link_to 'Destroy', customer, confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= link_to 'Add/View/Alter SOWs', customer %></td>
+    <td><%= link_to 'Change Name', edit_customer_path(customer) %></td>
+    <td><%= link_to 'Delete', customer, confirm: 'Are you sure?', method: :delete %></td>
   </tr>
 <% end %>
 </table>
